@@ -4,7 +4,6 @@ import {conversation, currentUser} from "@/store/mockapi";
 
 Vue.use(Vuex)
 
-console.log(currentUser)
 const store = new Vuex.Store({
 
   state: {
@@ -31,6 +30,27 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    sendReply ({ commit }) {
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            date: new Date(),
+            id: this.messages.length + 1,
+            from: {
+              id: 48,
+              fistName: 'Jack',
+              lastName: 'Dowager',
+              thumbnail: 'https://images.generated.photos/g232OgTeDpORCR483-Ko3acnrLoePZIbyMDabR64x2U/rs:fit:512:512/Z3M6Ly9nZW5lcmF0/ZWQtcGhvdG9zL3Yz/XzA3MDgyODAuanBn.jpg',
+            },
+            message: this.newMessageText
+          })
+        }, 0.5)
+      })
+        .then((message) => {
+          commit('addNewMessage', message)
+        })
+    },
+
     requestConversation ({ commit }) {
       return new Promise((resolve, reject) => {
         let messages = JSON.parse(conversation)

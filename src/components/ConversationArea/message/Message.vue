@@ -1,9 +1,11 @@
 <template>
   <div class="message-wrapper" :class="{'current-user-wrapper': fromCurrentUser }">
     <img class="user-avatar" :src="avatarURL" alt="avatar">
+    <div>
     <p class="message" :class="{'current-user': fromCurrentUser }">
       <slot></slot>
     </p>
+    </div>
   </div>
 </template>
 
@@ -26,9 +28,10 @@ export default {
 .message-wrapper {
   display: flex;
   align-self: flex-start;
-  align-items: center;
+  align-items: flex-end;
   max-width: 60%;
   flex-direction: row;
+  margin: 5px 0;
 }
 
 .message-wrapper.current-user-wrapper {
@@ -37,9 +40,11 @@ export default {
 }
 
 .message {
+  margin: 0;
   padding: 8px;
   border-radius: 8px;
   background-color: lightgrey;
+  font-size: 14px;
 }
 
 .current-user {

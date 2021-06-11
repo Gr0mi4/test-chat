@@ -23,7 +23,6 @@ export default {
   created() {
     this.requestConversation()
         .then(() => {
-          console.log(this.messages)
           this.requestCurrentUser()
         })
   },

@@ -1,7 +1,7 @@
 <template>
   <div class="compose-section">
-    <input class="input" type="text" v-model="newMessageText">
-    <button class="send-button" @click="sendNewMessage">Send</button>
+    <input placeholder="Type your message here" class="input" type="text" v-model="newMessageText">
+    <img src="../assets/save-icon.svg" class="send-button" @click="sendNewMessage"/>
   </div>
 </template>
 
@@ -30,7 +30,7 @@ export default {
 
   methods: {
     ...mapMutations({
-      addNewMessage: "addNewMessage"
+      addNewMessage: 'addNewMessage'
     }),
 
     checkPressButtonCombination(event) {
@@ -40,7 +40,7 @@ export default {
     },
 
     sendNewMessage() {
-      if (this.newMessageText !== "") {
+      if (this.newMessageText !== '') {
         const newMessage = {
           date: new Date(),
           id: this.messages.length + 1,
@@ -48,8 +48,7 @@ export default {
           message: this.newMessageText
         }
         this.addNewMessage(newMessage)
-        this.newMessageText = ""
-        window.scrollTo(0, window.outerHeight);
+        this.newMessageText = ''
       }
     }
   }
@@ -64,10 +63,17 @@ export default {
 
 .input {
   width: 100%;
+  max-width: 428px;
 }
 
 .send-button {
   width: 60px;
+  height: 35px;
   margin-left: 12px;
+  cursor: pointer;
+}
+
+.send-button:active {
+  transform: scale(0.95);
 }
 </style>
